@@ -31,7 +31,7 @@ python -u train.py --arch ${ARCH} --gpu-id ${GPU_ID} \
 --pretrain ${PRETRAIN} --sat-momentum ${MOM} \
 --loss ${LOSS} \
 --dataset ${DATASET} --save ${SAVE_DIR} \
---manual_seed ${SLURM_ARRAY_TASK_ID} \
+--manualSeed ${SLURM_ARRAY_TASK_ID} \
 2>&1 | tee -a ${SAVE_DIR}.log
 
 ### eval
