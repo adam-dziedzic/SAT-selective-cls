@@ -129,9 +129,11 @@ def main():
             transforms.Normalize((0.4914, 0.4822, 0.4465),
                                  (0.2023, 0.1994, 0.2010))
         ])
-        trainset = dataset(root='~/datasets/CIFAR10', train=True, download=True,
+        trainset = dataset(root='~/code/data/cifar10', train=True,
+                           download=True,
                            transform=transform_train)
-        testset = dataset(root='~/datasets/CIFAR10', train=False, download=True,
+        testset = dataset(root='~/code/data/cifar10', train=False,
+                          download=True,
                           transform=transform_test)
     elif args.dataset == 'svhn':
         # dataset = datasets.SVHN
@@ -240,7 +242,9 @@ def main():
         test_loss, test_acc = test(testloader, model, criterion, epoch,
                                    use_cuda)
         # save the model
-        filepath = os.path.join(save_path, "{:d}".format(epoch + 1) + ".pth")
+        filepath = os.path.join(
+            save_path,
+            "seed-{:d}-epoch-{:d}".format(args.manualSeed, epoch + 1) + ".pth")
         model_state = {
             'epoch': epoch + 1,
             'arch': args.arch,
@@ -252,7 +256,9 @@ def main():
         }
         torch.save(model_state, filepath)
         # delete the last saved model if exist
-        last_path = os.path.join(save_path, "{:d}".format(epoch) + ".pth")
+        last_path = os.path.join(
+            save_path,
+            "seed-{:d}-epoch-{:d}".format(args.manualSeed, epoch) + ".pth")
         if os.path.isfile(last_path): os.remove(last_path)
         # append logger file
         logger.append(

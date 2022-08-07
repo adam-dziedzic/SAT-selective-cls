@@ -44,7 +44,7 @@ class C10(datasets.CIFAR10):
                                   download=download)
 
     def __getitem__(self, index):
-        img, target = self.data[index], self.data[index]
+        img, target = self.data[index], self.targets[index]
 
         # doing this so that it is consistent with all other datasets
         # to return a PIL Image
