@@ -52,9 +52,8 @@ parser.add_argument('--sat-momentum', default=0.9, type=float,
                     help='momentum for sat')
 parser.add_argument('--weight-decay', '--wd', default=5e-4, type=float,
                     metavar='W', help='weight decay (default: 1e-4)')
-parser.add_argument('-o', '--rewards', dest='rewards', type=float, nargs='+',
+parser.add_argument('--rewards', type=float, nargs='+',
                     default=[2.2],
-                    metavar='o',
                     help='The reward o for a correct prediction; Abstention has a reward of 1. Provided parameters would be stored as a list for multiple runs.')
 parser.add_argument('--pretrain', type=int, default=0,
                     help='Number of pretraining epochs using the cross entropy loss, so that the learning can always start. Note that it defaults to 100 if dataset==cifar10 and reward<6.1, and the results in the paper are reproduced.')

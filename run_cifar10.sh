@@ -16,6 +16,8 @@
 # conda activate /ssd003/home/ady/envnew
 source /h/ady/.envnew
 
+echo "My SLURM_ARRAY_TASK_ID: " $SLURM_ARRAY_TASK_ID
+
 ARCH=vgg16_bn
 LOSS=ce
 DATASET=cifar10
@@ -31,11 +33,11 @@ python -u train.py --arch ${ARCH} --gpu-id ${GPU_ID} \
 --pretrain ${PRETRAIN} --sat-momentum ${MOM} \
 --loss ${LOSS} \
 --dataset ${DATASET} --save ${SAVE_DIR} \
---manualSeed ${SLURM_ARRAY_TASK_ID} \
+--manualSeed $SLURM_ARRAY_TASK_ID \
 2>&1 | tee -a ${SAVE_DIR}.log
 
 ### eval
 python -u train.py --arch ${ARCH} --gpu-id ${GPU_ID} \
---loss ${LOSS} --reward ${REWARD} --dataset ${DATASET} \
+--loss ${LOSS} --dataset ${DATASET} \
 --save ${SAVE_DIR} --evaluate \
 2>&1 | tee -a ${SAVE_DIR}.log
