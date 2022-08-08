@@ -7,7 +7,7 @@
 #SBATCH --partition=t4v2
 #SBATCH --job-name=train-cifar10-vgg16_bn_ce_loss
 #SBATCH --output=train-imagenet.out
-#SBATCH --array=2-25
+#SBATCH --array=26-50
 # everything below this line is optional, but are nice to have quality of life things
 #SBATCH --output=job.%J.out # tell it to store the output console text to a file called job.<assigned job number>.out
 #SBATCH --error=job.%J.err # tell it to store the error messages from the program (if it doesn't write them to normal console output) to a file called job.<assigned job muber>.err
