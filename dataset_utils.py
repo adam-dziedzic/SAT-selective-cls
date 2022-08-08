@@ -17,7 +17,7 @@ class resized_dataset(Dataset):
             end = dataset.__len__()
         if resize is None:
             for i in range(start, end):
-                self.data.append((*dataset.__getitem__(i)))
+                self.data.append(dataset.__getitem__(i))
         else:
             for i in range(start, end):
                 item = dataset.__getitem__(i)
