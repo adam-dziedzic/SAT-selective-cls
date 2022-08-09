@@ -8,6 +8,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 nohup python imagenet_main_sota.py \
   >>train_imagenet_main_${timestamp}_${loss}.txt 2>&1 &
 echo train_imagenet_main_${timestamp}_${loss}.txt
 
+timestamp=$(date +%Y-%m-%d-%H-%M-%S-%N)
 ARCH=vgg16_bn
 LOSS=sat
 DATASET=cifar10
@@ -21,6 +22,8 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 nohup python -u train_sota.py --arch ${ARCH} --gpu-
   --pretrain ${PRETRAIN} --sat-momentum ${MOM} \
   --loss ${LOSS} \
   --dataset ${DATASET} --save ${SAVE_DIR} \
-  --manualSeed $SLURM_ARRAY_TASK_ID \
-  2>&1 | tee -a ${SAVE_DIR}.log
-echo ${SAVE_DIR}.log
+  --manualSeed 1 >> ${SAVE_DIR}-${timestamp}.log 2>&1 &
+echo ${SAVE_DIR}-${timestamp}.log
+[1] 2315814                                                                                                                                                                │
+(python39) ady@equus:~/code2/SAT-selective-cls$ echo ${SAVE_DIR}-${timestamp}.log                                                                                          │
+/datadrive1/adam/cifar10_vgg16_bn_sat-2022-08-09-14-41-46-091583234.log
