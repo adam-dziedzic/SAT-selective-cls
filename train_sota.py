@@ -76,9 +76,6 @@ parser.add_argument('--arch', '-a', metavar='ARCH', default='vgg16_bn',
 parser.add_argument('--manualSeed', type=int, help='manual seed')
 parser.add_argument('-e', '--evaluate', dest='evaluate', action='store_true',
                     help='evaluate trained models on validation set, following the paths defined by "save", "arch" and "rewards"')
-# Device options
-parser.add_argument('--gpu-id', default='0', type=str,
-                    help='id(s) for CUDA_VISIBLE_DEVICES')
 
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
@@ -88,7 +85,6 @@ expected_coverage = args.coverage
 reward_list = args.rewards
 
 # Use CUDA
-os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu_id
 use_cuda = torch.cuda.is_available()
 
 # Random seed
